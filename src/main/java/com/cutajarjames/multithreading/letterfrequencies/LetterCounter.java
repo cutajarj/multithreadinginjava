@@ -10,19 +10,21 @@ public class LetterCounter {
 
     int finishedCount = 0;
 
-    public void countLetters(URL url, HashMap<Character, Integer> frequencyTable) {
+    public void countLetters(URL url, HashMap<Character, Integer> frequencyDict) {
         try {
             var stream = url.openStream();
             var txt = new String(stream.readAllBytes());
             for (char c : txt.toCharArray()) {
                 var letter = Character.toLowerCase(c);
                 synchronized (this) {
-                    if (frequencyTable.containsKey(letter))
-                        frequencyTable.put(letter, frequencyTable.get(letter) + 1);
+                    if (frequencyDict.containsKey(letter))
+                        frequencyDict.put(letter, frequencyDict.get(letter) + 1);
                 }
             }
             stream.close();
-            finishedCount++;
+            synchronized (this) {
+                finishedCount++;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -30,20 +32,20 @@ public class LetterCounter {
 
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         var letterCounter = new LetterCounter();
-        var freqTable = new HashMap<Character, Integer>();
+        var frequencyDict = new HashMap<Character, Integer>();
         for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
-            freqTable.put(c, 0);
+            frequencyDict.put(c, 0);
         }
         var start = System.currentTimeMillis();
-        for (int i = 1000; i < 1020; i++) {
+        for (int i = 1000; i < 1050; i++) {
             var url = new URL("https://www.rfc-editor.org/rfc/rfc%s.txt".formatted(i));
-            new Thread(() -> letterCounter.countLetters(url, freqTable)).start();
+            new Thread(() -> letterCounter.countLetters(url, frequencyDict)).start();
         }
         while (letterCounter.finishedCount < 20) {
             TimeUnit.MILLISECONDS.sleep(500);
         }
         var end = System.currentTimeMillis();
         System.out.println("Done, timetaken: " + (end - start));
-        freqTable.forEach((k, v) -> System.out.println(k + ", " + v));
+        frequencyDict.forEach((k, v) -> System.out.println(k + ", " + v));
     }
 }
