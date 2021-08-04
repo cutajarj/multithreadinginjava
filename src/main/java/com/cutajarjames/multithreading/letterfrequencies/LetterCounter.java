@@ -41,7 +41,7 @@ public class LetterCounter {
             var url = new URL("https://www.rfc-editor.org/rfc/rfc%s.txt".formatted(i));
             new Thread(() -> letterCounter.countLetters(url, frequencyDict)).start();
         }
-        while (letterCounter.finishedCount < 20) {
+        while (letterCounter.finishedCount < 50) {
             TimeUnit.MILLISECONDS.sleep(500);
         }
         var end = System.currentTimeMillis();
