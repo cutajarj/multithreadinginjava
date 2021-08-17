@@ -1,4 +1,4 @@
-package com.cutajarjames.multithreading.barriers;
+package com.cutajarjames.multithreading.barrier;
 
 import java.util.Arrays;
 import java.util.concurrent.BrokenBarrierException;

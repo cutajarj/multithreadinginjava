@@ -1,4 +1,4 @@
-package com.cutajarjames.multithreading.barriers;
+package com.cutajarjames.multithreading.barrier;
 
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
