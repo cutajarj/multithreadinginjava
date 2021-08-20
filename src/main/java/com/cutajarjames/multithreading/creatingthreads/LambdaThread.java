@@ -3,8 +3,7 @@ package com.cutajarjames.multithreading.creatingthreads;
 import java.util.concurrent.TimeUnit;
 
 public class LambdaThread {
-
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
             new Thread(() -> {
                 System.out.println("Starting work");
@@ -13,7 +12,7 @@ public class LambdaThread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Finished Work");
+                System.out.println("Finished work");
             }).start();
         }
     }

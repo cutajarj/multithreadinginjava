@@ -3,6 +3,7 @@ package com.cutajarjames.multithreading.creatingthreads;
 import java.util.concurrent.TimeUnit;
 
 public class RunnableThread implements Runnable{
+    @Override
     public void run() {
         System.out.println("Starting work");
         try {
@@ -10,13 +11,12 @@ public class RunnableThread implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Finished Work");
+        System.out.println("Finished work");
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         for (int i = 0; i < 5; i++) {
             new Thread(new RunnableThread()).start();
         }
     }
-
 }
