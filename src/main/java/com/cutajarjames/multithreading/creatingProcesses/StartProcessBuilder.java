@@ -1,6 +1,5 @@
 package com.cutajarjames.multithreading.creatingProcesses;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -11,7 +10,7 @@ public class StartProcessBuilder {
             TimeUnit.SECONDS.sleep(5);
             System.out.println("Child process is done");
         } else {
-            System.out.println("This is the parent process ");
+            System.out.println("This is the parent process");
             var javaCmd = System.getProperty("java.home") + "/bin/java";
             var classpath = System.getProperty("java.class.path");
             var classToRun = StartProcessBuilder.class.getCanonicalName();
