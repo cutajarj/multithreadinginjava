@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class LetterCounterSingleThread {
-
     public void countLetters(URL url, HashMap<Character, Integer> frequencyDict) {
         try {
             var stream = url.openStream();
@@ -25,9 +24,8 @@ public class LetterCounterSingleThread {
     public static void main(String[] args) throws MalformedURLException {
         var letterCounter = new LetterCounterSingleThread();
         var frequencyDict = new HashMap<Character, Integer>();
-        for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
+        for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray())
             frequencyDict.put(c, 0);
-        }
         var start = System.currentTimeMillis();
         for (int i = 1000; i < 1050; i++) {
             var url = new URL("https://www.rfc-editor.org/rfc/rfc%s.txt".formatted(i));
