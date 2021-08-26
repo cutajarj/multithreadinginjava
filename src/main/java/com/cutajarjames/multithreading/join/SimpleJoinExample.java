@@ -2,7 +2,7 @@ package com.cutajarjames.multithreading.join;
 
 import java.util.concurrent.TimeUnit;
 
-public class SimpleJoinExample extends Thread{
+public class SimpleJoinExample extends Thread {
     @Override
     public void run() {
         System.out.println("Child thread doing work");
@@ -19,6 +19,6 @@ public class SimpleJoinExample extends Thread{
         childThread.start();
         System.out.println("Parent Thread is waiting...");
         childThread.join();
-        System.out.println("Parent Thread unblocked...");
+        System.out.println("Parent Thread is unblocked...");
     }
 }
