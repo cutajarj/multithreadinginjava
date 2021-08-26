@@ -33,17 +33,15 @@ public class LetterCounter {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
         var letterCounter = new LetterCounter();
         var frequencyDict = new HashMap<Character, Integer>();
-        for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
+        for (char c : "abcdefghijklmnopqrstuvwxyz".toCharArray())
             frequencyDict.put(c, 0);
-        }
         var start = System.currentTimeMillis();
         for (int i = 1000; i < 1050; i++) {
             var url = new URL("https://www.rfc-editor.org/rfc/rfc%s.txt".formatted(i));
             new Thread(() -> letterCounter.countLetters(url, frequencyDict)).start();
         }
-        while (letterCounter.finishedCount < 50) {
+        while (letterCounter.finishedCount < 50)
             TimeUnit.MILLISECONDS.sleep(500);
-        }
         var end = System.currentTimeMillis();
         System.out.println("Done, timetaken: " + (end - start));
         frequencyDict.forEach((k, v) -> System.out.println(k + ", " + v));
