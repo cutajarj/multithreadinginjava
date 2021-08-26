@@ -10,17 +10,18 @@ public class FileSearch {
     public void find(File root, String filename) {
         System.out.println("Searching in " + root.getAbsolutePath());
         var childThreads = new ArrayList<Thread>();
-        for (var f: root.listFiles()) {
-            if (f.getName().contains(filename)) {
-                matches.add(f);
-            }
+        for (var f : root.listFiles()) {
+            if (f.getName().contains(filename))
+                synchronized (this) {
+                    matches.add(f);
+                }
             if (f.isDirectory()) {
                 var t = new Thread(() -> find(f, filename));
                 childThreads.add(t);
                 t.start();
             }
         }
-        for (var t: childThreads) {
+        for (var t : childThreads) {
             try {
                 t.join();
             } catch (InterruptedException e) {
