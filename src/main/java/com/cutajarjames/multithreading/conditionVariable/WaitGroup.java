@@ -7,15 +7,15 @@ public class WaitGroup {
         waitCount += count;
     }
 
+    public synchronized void waitUntilAllDone() throws InterruptedException {
+        while (waitCount > 0)
+            this.wait();
+    }
+
     public synchronized void done() {
         if (waitCount > 0)
             waitCount -= 1;
         if (waitCount == 0)
             this.notifyAll();
-    }
-
-    public synchronized void waitUntilAllDone() throws InterruptedException {
-        while (waitCount > 0)
-            this.wait();
     }
 }
