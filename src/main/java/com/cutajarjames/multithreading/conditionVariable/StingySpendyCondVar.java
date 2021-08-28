@@ -23,11 +23,12 @@ public class StingySpendyCondVar {
     public void spendy() {
         for (int i = 0; i < 500000; i++) {
             mutex.lock();
-            try {
-                while (this.money < 20)
+            while (this.money < 20) {
+                try {
                     condition.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             this.money -= 20;
             if (this.money < 0)
