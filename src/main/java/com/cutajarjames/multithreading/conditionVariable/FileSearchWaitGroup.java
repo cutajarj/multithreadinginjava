@@ -9,13 +9,14 @@ public class FileSearchWaitGroup {
 
     public void find(File root, String filename, WaitGroup waitGroup) {
         System.out.println("Searching in " + root.getAbsolutePath());
-        for (var f: root.listFiles()) {
-            if (f.getName().contains(filename)) {
-                matches.add(f);
-            }
+        for (var f : root.listFiles()) {
+            if (f.getName().contains(filename))
+                synchronized (this) {
+                    matches.add(f);
+                }
             if (f.isDirectory()) {
-                waitGroup.add(1);
                 var t = new Thread(() -> find(f, filename, waitGroup));
+                waitGroup.add(1);
                 t.start();
             }
         }
