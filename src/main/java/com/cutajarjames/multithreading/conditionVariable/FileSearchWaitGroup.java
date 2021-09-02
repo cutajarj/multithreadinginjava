@@ -26,6 +26,7 @@ public class FileSearchWaitGroup {
     public static void main(String[] args) throws InterruptedException {
         var fileSearch = new FileSearchWaitGroup();
         var waitGroup = new WaitGroup();
+        waitGroup.add(1);
         fileSearch.find(new File("c:/tools"), "README.md", waitGroup);
         waitGroup.waitUntilAllDone();
         fileSearch.matches.forEach(System.out::println);
