@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class Train extends Thread{
     public static int DISTANCE = 780;
     public static int TRAIN_LENGTH = 200;
+
     protected int frontPos = 0;
     protected int id;
     protected List<Crossing> crossings;
