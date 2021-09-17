@@ -13,7 +13,7 @@ public class DeadlockTrain extends Train {
     }
 
     public void run() {
-        while (super.frontPos < DISTANCE) {
+        while (frontPos < DISTANCE) {
             frontPos += 1;
             crossings.forEach(crossing -> {
                 if (frontPos == crossing.getPos()) {
