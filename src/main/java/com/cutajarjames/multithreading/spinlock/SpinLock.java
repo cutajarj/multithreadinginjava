@@ -13,6 +13,7 @@ public class SpinLock implements Lock {
     public void lock() {
         while (!locked.compareAndSet(false, true)) {
             Thread.yield();
+            //Thread.onSpinWait();
         }
     }
 
