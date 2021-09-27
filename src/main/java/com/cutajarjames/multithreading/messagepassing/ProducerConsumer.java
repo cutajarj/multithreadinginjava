@@ -18,7 +18,7 @@ public class ProducerConsumer {
         try {
             while (true) {
                 queue.put("Hello there");
-                System.out.println("Message Sent");
+                System.out.println("Message sent");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
